@@ -3,7 +3,7 @@
 ### Producer-Consumer Problem Example
 
 In order to implement producer consumer pradigm following story is applied. In this example there are warriors and weapons. Most popular weapon is bow and arrow but number of arrows is limited with 10. Therefore some people must bring arrow to the warriors in the battfield.
-In this example ottoman woman is bringin arrows to the warriors king and queen. As a result king and queen are consumers ottoman women is producer.
+In this example ottoman woman is bringing arrows to the warriors king and queen. As a result king and queen are consumers ottoman women is producer for arrows and numerofArrow variable is shared buffer by producer and consumers.
 
 ### Class Diagram
 
