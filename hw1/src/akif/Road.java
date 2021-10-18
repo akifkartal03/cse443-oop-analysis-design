@@ -45,9 +45,9 @@ public class Road {
         g2.setColor(Color.ORANGE);
         g2.draw(new Line2D.Double(150, 239, 200, 239));*/
 	}
-	public void updateRoad() {
+	public void updateRoad(int distance) {
 		for(RoadStone stone : stoneList) {
-			stone.setX(stone.getX()-1);
+			stone.setX(stone.getX()-distance);
 		}
 		RoadStone stone2 = stoneList.get(0);
 		if(stone2.getX() + 50 < 0) {
