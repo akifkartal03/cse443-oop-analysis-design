@@ -91,6 +91,8 @@ public class MainJPanel extends JPanel implements Runnable, KeyListener{
 		//g.drawOval(5, 204, 50, 50);
 		g.setColor(Color.BLACK);
 		g.drawString("FPS: " + currentFPS, 10, 20);
+		g.drawString("Life: " + character.getTotalLife(), 475, 15);
+		g.drawString("Total Point: " + character.getTotalPoint(), 475, 35);
 		//g.drawLine(0, 60, 180, 60);
 		//Graphics2D g2 = (Graphics2D) g;
 	    //g2.setStroke(new BasicStroke(5f));
