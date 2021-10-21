@@ -1,6 +1,6 @@
-package akif;
+package strategy;
 
-public class HighJump implements JumpBehavior{
+public class LowJump implements JumpBehavior{
 
 	@Override
 	public void jump() {

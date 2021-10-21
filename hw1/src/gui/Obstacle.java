@@ -1,4 +1,4 @@
-package akif;
+package gui;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -75,7 +75,7 @@ public class Obstacle {
 	
 	public int getRandomPosition() {
 		
-		//get random number between 200-500
+		//get random number between 300-500
 		return randomPosition.nextInt((501) - 300) + 300;
 	}
 	

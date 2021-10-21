@@ -1,4 +1,4 @@
-package akif;
+package gui;
 
 import java.awt.Rectangle;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package akif;
+package strategy;
 
 public interface JumpBehavior {
 	

@@ -1,4 +1,4 @@
-package akif;
+package decorator;
 
 public abstract class PowerUP {
 	private String name = "Unknown name";

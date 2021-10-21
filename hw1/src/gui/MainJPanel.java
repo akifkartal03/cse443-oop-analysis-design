@@ -1,4 +1,4 @@
-package akif;
+package gui;
 
 import java.awt.BasicStroke;
 import java.awt.BorderLayout;
@@ -15,6 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
+
+import strategy.MainCharacter;
 
 enum GameState{
 	Start, Playing, Finished;
@@ -109,7 +111,7 @@ public class MainJPanel extends JPanel implements Runnable, KeyListener{
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// intentionally empty
-		//by author
+		// by author akif
 		
 	}
 
