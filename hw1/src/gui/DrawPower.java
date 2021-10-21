@@ -53,14 +53,14 @@ public class DrawPower {
 		
 	}
 	
-	public boolean isIntersects(Rectangle chr) {
+	public PowerDecorator isIntersects(Rectangle chr) {
 		for(PowerDecorator stone : powerList) {
 			//list.add(stone.getObs());
 			if(stone.getPowerArea().intersects(chr)) {
-				return true;
+				return stone;
 			}
 		}
-		return false;
+		return null;
 	}
 	
 	public void draw(Graphics g) {

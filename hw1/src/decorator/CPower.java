@@ -11,11 +11,14 @@ public class CPower extends PowerDecorator{
 		
 		
 	}
+	public CPower(PowerUP powertype) {
+		this();
+		this.powertype = powertype;
+	}
 	
 	@Override
-	public int multiplier() {
-		// TODO Auto-generated method stub
-		return 0;
+	public long multiplier() {
+		return getPowertype().multiplier()*10;
 	}
 
 	@Override

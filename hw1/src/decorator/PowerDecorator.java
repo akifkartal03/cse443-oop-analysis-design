@@ -7,7 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
 public abstract class PowerDecorator extends PowerUP{
-	private PowerUP powertype; //has a relation
+	protected PowerUP powertype; //has a relation
 	protected int xStart;
 	protected Rectangle powerArea;
 	

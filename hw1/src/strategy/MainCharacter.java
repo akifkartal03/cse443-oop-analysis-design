@@ -9,25 +9,18 @@ import java.awt.geom.Ellipse2D;
 
 import decorator.PowerUP;
 
-public class MainCharacter extends PowerUP {
+public class MainCharacter  {
 	
 	private JumpBehavior jumpBehavior;
-	private Rectangle chr;
-	private int yStart;
 	private int totalPoint;
 	private int totalLife;
+	private Coordinates cor;
 	
 	public MainCharacter() {
 		jumpBehavior = new LowJump();
-		chr = new Rectangle();
-		yStart = 204;
-		chr.x = 150;
-		chr.y = yStart;
-		chr.width = 35;
-		chr.height = 35;
 		totalLife = 3;
 		totalPoint = 0;
-		setName("Red Ball 443");
+		cor = new Coordinates();
 	}
 	
 	public void setJumpBehavior(JumpBehavior jumpBehavior) {
@@ -35,24 +28,20 @@ public class MainCharacter extends PowerUP {
 	}
 	
 	public Rectangle getCharacter() {
-		return chr;
+		return cor.getChr();
 	}
 	
-	public void jump(int distance) {
-		yStart -= distance;
-		chr.y = yStart;		
+	public Coordinates getCoordinates() {
+		return cor;
 	}
-	public void unjump(int distance) {
-		yStart += distance;
-		chr.y = yStart;	
-	}
+	
 	
 	public void draw(Graphics g) {
 			
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setStroke(new BasicStroke(3f));
         g2.setColor(Color.decode("#f84545"));
-        g2.fill(new Ellipse2D.Double(150, yStart, 30, 30));	
+        g2.fill(new Ellipse2D.Double(150, cor.getyStart(), 30, 30));	
 	}
 	public void decrementLife() {
 		totalLife--;
@@ -77,13 +66,6 @@ public class MainCharacter extends PowerUP {
 	}
 
 	
-
-	@Override
-	public int multiplier() {
-		//default multiplier is 1 for character
-		return 1;
-	}
-
 	
 	
 

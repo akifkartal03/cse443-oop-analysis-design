@@ -17,10 +17,14 @@ public class APower extends PowerDecorator{
 		
 	}
 	
+	public APower(PowerUP powertype) {
+		this();
+		this.powertype = powertype;
+	}
+	
 	@Override
-	public int multiplier() {
-		// TODO Auto-generated method stub
-		return 0;
+	public long multiplier() {
+		return getPowertype().multiplier()*2;
 	}
 
 	@Override

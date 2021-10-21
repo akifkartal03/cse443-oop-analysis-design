@@ -11,6 +11,6 @@ public abstract class PowerUP {
 		this.name = name;
 	}
 	
-	public abstract int multiplier();
+	public abstract long multiplier();
 	
 }

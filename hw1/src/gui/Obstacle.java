@@ -54,7 +54,7 @@ public class Obstacle {
 		for(PowerDecorator power1 : powerList) {
 			for(ObsPosition obs1 : positionList) {
 				if(power1.getPowerArea().intersects(obs1.getObs())){
-					power1.setxStart(power1.getxStart()+75);
+					power1.setxStart(power1.getxStart()+70);
 				}
 			}
 		}

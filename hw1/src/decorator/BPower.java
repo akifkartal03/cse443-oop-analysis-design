@@ -11,11 +11,14 @@ public class BPower extends PowerDecorator{
 		
 		
 	}
+	public BPower(PowerUP powertype) {
+		this();
+		this.powertype = powertype;
+	}
 
 	@Override
-	public int multiplier() {
-		// TODO Auto-generated method stub
-		return 0;
+	public long multiplier() {
+		return getPowertype().multiplier()*5;
 	}
 
 	@Override
