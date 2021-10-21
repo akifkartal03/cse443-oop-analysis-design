@@ -10,11 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import decorator.PowerDecorator;
+
 public class Obstacle {
 	
-	private int xStart;
-	private int yStart;
-	private Rectangle obs;
 	private List<ObsPosition> positionList;
 	private Random randomPosition;
 	
@@ -26,18 +25,10 @@ public class Obstacle {
 			obs1.setxStart((i+1)*getRandomPosition());
 			positionList.add(obs1);
 		}
-		xStart = 200;
-		yStart = 160;
-		obs = new Rectangle();
-		obs.width = 10;
-		obs.height = 69;
-		obs.x = xStart;
-		obs.y = yStart;
 	}
 	
 	public void updateObstacle(int distance) {
-		xStart -= distance;
-		obs.x = xStart;
+	
 		for(ObsPosition stone : positionList) {
 			stone.setxStart(stone.getxStart()-distance);
 		}
@@ -59,13 +50,24 @@ public class Obstacle {
 		return false;
 	}
 	
+	public void resolveOverLaps(List<PowerDecorator> powerList) {
+		for(PowerDecorator power1 : powerList) {
+			for(ObsPosition obs1 : positionList) {
+				if(power1.getPowerArea().intersects(obs1.getObs())){
+					power1.setxStart(power1.getxStart()+75);
+				}
+			}
+		}
+		
+	}
+	
 	public void draw(Graphics g) {
 			
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setStroke(new BasicStroke(10f));
 		g2.setColor(Color.BLACK);
 		for(ObsPosition obst : positionList) {
-			g2.drawRect(obst.getxStart(), yStart, 5, 69);
+			g2.drawRect(obst.getxStart(), 160, 5, 69);
 		}
         //g2.draw(new Line2D.Double(xStart, yStart, xStart, 226));
         
@@ -75,8 +77,8 @@ public class Obstacle {
 	
 	public int getRandomPosition() {
 		
-		//get random number between 300-500
-		return randomPosition.nextInt((501) - 300) + 300;
+		//get random number between 300-600
+		return randomPosition.nextInt((601) - 300) + 300;
 	}
 	
 	

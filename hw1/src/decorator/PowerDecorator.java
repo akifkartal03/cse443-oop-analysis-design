@@ -11,7 +11,18 @@ public abstract class PowerDecorator extends PowerUP{
 	protected int xStart;
 	protected Rectangle powerArea;
 	
-	public abstract void draw(Graphics g);
+	public PowerDecorator() {
+		setName("U");
+		xStart = 400;
+		powerArea = new Rectangle();
+		powerArea.width = 20;
+		powerArea.height = 20;
+		powerArea.x = xStart;
+		powerArea.y = 212;
+		
+	}
+	
+	public abstract String getName();
 
 	public PowerUP getPowertype() {
 		return powertype;

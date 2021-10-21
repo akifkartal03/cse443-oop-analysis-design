@@ -1,10 +1,16 @@
 package decorator;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 public class DPower extends PowerDecorator{
 
-	
+	public DPower() {
+		super();
+		setName("D");
+		
+		
+	}
 
 	@Override
 	public int multiplier() {
@@ -13,9 +19,11 @@ public class DPower extends PowerDecorator{
 	}
 
 	@Override
-	public void draw(Graphics g) {
-		// TODO Auto-generated method stub
+	public String getName() {
 		
+		return "D";
 	}
+
+	
 
 }

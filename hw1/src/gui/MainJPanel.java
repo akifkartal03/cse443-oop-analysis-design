@@ -32,6 +32,7 @@ public class MainJPanel extends JPanel implements Runnable, KeyListener{
 	MainCharacter character;
 	private Road road;
 	private Obstacle obs;
+	private DrawPower powers;
 	private JTextArea logPanel;
 	private boolean isJumped = false;
 	
@@ -41,6 +42,7 @@ public class MainJPanel extends JPanel implements Runnable, KeyListener{
 		road = new Road();
 		obs = new Obstacle();
 		character = new MainCharacter();
+		powers = new DrawPower();
 		this.logPanel = logArea;
 		//System.out.println(logPanel.getText());
 		
@@ -106,6 +108,7 @@ public class MainJPanel extends JPanel implements Runnable, KeyListener{
 		character.draw(g);
         road.draw(g);
         obs.draw(g);
+        powers.draw(g);
 	}
 
 	@Override
@@ -124,18 +127,24 @@ public class MainJPanel extends JPanel implements Runnable, KeyListener{
 			System.out.println("inter");
 			logPanel.append("\ninter");
 		}
+		if(powers.isIntersects(character.getCharacter())) {
+			System.out.println("inter power");
+			logPanel.append("\ninter power");
+		}
 		if (e.getKeyCode() == KeyEvent.VK_SPACE && !isJumped) {
 			character.jump(55);
 			character.jump(30);
 			road.updateRoad(5);
 			obs.updateObstacle(5);
+			powers.updatePowers(5);
 			isJumped = true;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_D) {
 			road.updateRoad(5);
 			obs.updateObstacle(5);
+			powers.updatePowers(5);
 		}
-		
+		obs.resolveOverLaps(powers.getPowerList());
 	}
 
 	@Override
@@ -144,13 +153,19 @@ public class MainJPanel extends JPanel implements Runnable, KeyListener{
 			//System.out.println("inter");
 			logPanel.append("\ninter");
 		}
+		if(powers.isIntersects(character.getCharacter())) {
+			//System.out.println("inter");
+			logPanel.append("\ninter power");
+		}
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			road.updateRoad(5);
 			obs.updateObstacle(80);
+			powers.updatePowers(80);
 			character.unjump(30);
 			character.unjump(55);
 			isJumped = false;
 		}
+		obs.resolveOverLaps(powers.getPowerList());
 		
 	}
 	

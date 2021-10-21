@@ -1,18 +1,19 @@
 package decorator;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
+
+import gui.ObsPosition;
 
 public class APower extends PowerDecorator{
 
 	public APower() {
+		super();
 		setName("A");
-		xStart = 500;
-		powerArea = new Rectangle();
-		powerArea.width = 20;
-		powerArea.height = 20;
-		powerArea.x = xStart;
-		powerArea.y = 160;
+		
 		
 	}
 	
@@ -22,13 +23,11 @@ public class APower extends PowerDecorator{
 		return 0;
 	}
 
-
-
-
 	@Override
-	public void draw(Graphics g) {
-		// TODO Auto-generated method stub
-		
+	public String getName() {
+		return "A";
 	}
+
+
 
 }
