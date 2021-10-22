@@ -9,23 +9,20 @@ import java.awt.geom.Ellipse2D;
 
 import decorator.PowerUP;
 
-public class MainCharacter  {
+public class MainCharacter extends Character{
 	
-	private JumpBehavior jumpBehavior;
-	private int totalPoint;
+	private long totalPoint;
 	private int totalLife;
 	private Coordinates cor;
 	
 	public MainCharacter() {
-		jumpBehavior = new LowJump();
+		//initial it jumps low
+		setJumpBehavior(new LowJump());
 		totalLife = 3;
 		totalPoint = 0;
 		cor = new Coordinates();
 	}
 	
-	public void setJumpBehavior(JumpBehavior jumpBehavior) {
-		this.jumpBehavior = jumpBehavior;
-	}
 	
 	public Rectangle getCharacter() {
 		return cor.getChr();
@@ -46,11 +43,11 @@ public class MainCharacter  {
 	public void decrementLife() {
 		totalLife--;
 	}
-	public void incremetPoint(int point) {
+	public void incremetPoint(long point) {
 		totalPoint+=point;
 	}
 
-	public int getTotalPoint() {
+	public long getTotalPoint() {
 		return totalPoint;
 	}
 
@@ -58,13 +55,25 @@ public class MainCharacter  {
 	public int getTotalLife() {
 		return totalLife;
 	}
-	
-	
 
-	public JumpBehavior getJumpBehavior() {
-		return jumpBehavior;
+
+	@Override
+	public void jumpChr(int distance) {
+		//use jump behavior
+		getJumpBehavior().jump(cor, distance);
 	}
 
+
+	@Override
+	public void fallChr(int distance) {
+		//use fall behavior
+		getJumpBehavior().fall(cor, distance);
+		
+	}
+	
+	
+
+	
 	
 	
 	

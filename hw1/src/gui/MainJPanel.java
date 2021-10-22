@@ -11,6 +11,7 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -24,40 +25,53 @@ import decorator.PowerDecorator;
 import decorator.PowerUP;
 import decorator.Score;
 import strategy.HighJump;
+import strategy.LowJump;
 import strategy.MainCharacter;
 
-enum GameState{
-	Start, Playing, Finished;
-}
+
 
 public class MainJPanel extends JPanel implements Runnable, KeyListener{
 	
-	GameState state = GameState.Start;
-	private int x = 0;
-	private int y = 0;
-	private int FPS= 60;
-	private int currentFPS= 60;
+	GameState state;
+	private int x;
+	private int y;
+	private int FPS;
+	private int currentFPS;
 	MainCharacter character;
 	private Road road;
 	private Obstacle obs;
 	private DrawPower powers;
 	private PowerUP score;
 	private JTextArea logPanel;
-	private int distance = 55;
-	private int distance2 = 45;
-	private boolean isJumped = false;
-	private boolean isGameOver = false;
+	private int distance;
+	private int distance2;
+	private boolean isJumped;
+	private boolean isGameOver;
 	
 	public MainJPanel(JTextArea logArea) {
 		super(new BorderLayout());
+		this.logPanel = logArea;
+		initGame();
+		//System.out.println(logPanel.getText());
+		
+	}
+	
+	public void initGame() {
+		
 		road = new Road();
 		obs = new Obstacle();
 		character = new MainCharacter();
 		powers = new DrawPower();
 		score = new Score();
-		this.logPanel = logArea;
-		//System.out.println(logPanel.getText());
-		
+		state = GameState.Paused;
+		x = 0;
+		y = 0;
+		FPS= 60;
+		currentFPS= 60;
+		distance = 55;
+		distance2 = 45;
+		isJumped = false;
+		isGameOver = false;
 	}
 
 	@Override
@@ -84,8 +98,10 @@ public class MainJPanel extends JPanel implements Runnable, KeyListener{
 				}*/
 				if(character.getTotalLife() <= 0 && !isGameOver) {
 					//Finish game heree.
-					logPanel.append("\nGame Over");
+					logPanel.append("\nGame Over!!");
+					//JOptionPane.showMessageDialog(null, "Game Over!", "Game Over", JOptionPane.INFORMATION_MESSAGE);
 					isGameOver = true;
+					state = GameState.Finished;
 				}
 				repaint();
 				deltaTime--;
@@ -112,9 +128,10 @@ public class MainJPanel extends JPanel implements Runnable, KeyListener{
 		//g.drawOval(5, 204, 50, 50);
 		g.setColor(Color.BLACK);
 		g.drawString("FPS: " + currentFPS, 10, 20);
-		g.drawString("Life: " + character.getTotalLife(), 460, 15);
+		g.drawString("Life: " + character.getTotalLife(), 525, 20);
 		g.drawString("Score Multiplier : " + score.multiplier(), 10, 40);
-		g.drawString("Total Point: " + character.getTotalPoint(), 460, 35);
+		g.drawString("Total Score: " + character.getTotalPoint(), 10, 60);
+		//g.drawString("D: Move Right, Space: Jump, Esc: Pause ", 175, 20);
 		//g.drawLine(0, 60, 180, 60);
 		//Graphics2D g2 = (Graphics2D) g;
 	    //g2.setStroke(new BasicStroke(5f));
@@ -143,42 +160,51 @@ public class MainJPanel extends JPanel implements Runnable, KeyListener{
 		//System.out.println("Key Pressed");
 		//logPanel.append("\nKey Pressed");
 		
-		if(obs.isIntersects(character.getCharacter()) && distance2 > 40 ) {
-			//System.out.println("inter");
-			if(character.getTotalLife() > 0) {
-				logPanel.append("\nYou lost a life.");
-				character.decrementLife();
+		if(state == GameState.Playing) {
+			if(obs.isIntersects(character.getCharacter()) && distance2 > 40 ) {
+				//System.out.println("inter");
+				if(character.getTotalLife() > 0) {
+					logPanel.append("\nYou lost a life.");
+					character.decrementLife();
+				}
+				else {
+					logPanel.append("\nGame Over");
+					isGameOver = true;
+				}
+				distance2 = 0;
 			}
-			else {
-				logPanel.append("\nGame Over");
-				isGameOver = true;
+			PowerDecorator result = powers.isIntersects(character.getCharacter());
+			if(result != null && distance > 50) {
+				//character = 
+				wrapCharacter(result);
+				logPanel.append("\n" + result.getName() + " power acquired.");
+				distance = 0;
 			}
-			distance2 = 0;
+			if (e.getKeyCode() == KeyEvent.VK_SPACE && !isJumped) {
+				character.jumpChr(55);
+				character.jumpChr(30);
+				logPanel.append("\n" + character.getJumpBehavior().getType());
+				road.updateRoad(5);
+				obs.updateObstacle(5);
+				powers.updatePowers(5);
+				isJumped = true;
+			}
+			if (e.getKeyCode() == KeyEvent.VK_D) {
+				road.updateRoad(5);
+				obs.updateObstacle(5);
+				powers.updatePowers(5);
+				distance+=5;
+				distance2+=5;
+			}
+			obs.resolveOverLaps(powers.getPowerList());
 		}
-		PowerDecorator result = powers.isIntersects(character.getCharacter());
-		if(result != null && distance > 50) {
-			//character = 
-			wrapCharacter(result);
-			logPanel.append("\n" + result.getName() + " power acquired.");
-			distance = 0;
+		else if (state == GameState.Paused) {
+			JOptionPane.showMessageDialog(null, "Please Start Game from Menu!", "Game Paused", JOptionPane.INFORMATION_MESSAGE);
 		}
-		if (e.getKeyCode() == KeyEvent.VK_SPACE && !isJumped) {
-			character.getJumpBehavior().jump(character.getCoordinates(), 55);
-			character.getJumpBehavior().jump(character.getCoordinates(), 30);
-			logPanel.append("\n" + character.getJumpBehavior().getType());
-			road.updateRoad(5);
-			obs.updateObstacle(5);
-			powers.updatePowers(5);
-			isJumped = true;
+		else {
+			JOptionPane.showMessageDialog(null, "Game Over!\n"
+					+ "Start New Game.", "Game Over", JOptionPane.INFORMATION_MESSAGE);
 		}
-		if (e.getKeyCode() == KeyEvent.VK_D) {
-			road.updateRoad(5);
-			obs.updateObstacle(5);
-			powers.updatePowers(5);
-			distance+=5;
-			distance2+=5;
-		}
-		obs.resolveOverLaps(powers.getPowerList());
 	}
 
 	@Override
@@ -205,8 +231,13 @@ public class MainJPanel extends JPanel implements Runnable, KeyListener{
 			road.updateRoad(5);
 			obs.updateObstacle(80);
 			powers.updatePowers(80);
-			character.getJumpBehavior().fall(character.getCoordinates(), 30);
-			character.getJumpBehavior().fall(character.getCoordinates(), 55);
+			if(obs.isTrueJump(character.getCoordinates().getChr().x)) {
+				logPanel.append("\nYou got " + score.multiplier() + " point! (1*ScoreMultiplier)");
+				character.incremetPoint(score.multiplier());
+			}
+			
+			character.fallChr(30);
+			character.fallChr(55);
 			isJumped = false;
 		}
 		obs.resolveOverLaps(powers.getPowerList());
@@ -225,9 +256,25 @@ public class MainJPanel extends JPanel implements Runnable, KeyListener{
 			score = new CPower(score);
 			break;
 		case "D":
-			character.setJumpBehavior(new HighJump());
+			if(character.getJumpBehavior() instanceof LowJump) {
+				character.setJumpBehavior(new HighJump());
+			}
+			else {
+				character.setJumpBehavior(new LowJump());
+			}
+			
 			break;
 		default:
 		}
 	}
+
+	public GameState getState() {
+		return state;
+	}
+
+	public void setState(GameState state) {
+		this.state = state;
+	}
+	
+	
 }

@@ -50,6 +50,16 @@ public class Obstacle {
 		return false;
 	}
 	
+	public boolean isTrueJump(int xPosition) {
+		for(ObsPosition stone : positionList) {
+			//list.add(stone.getObs());
+			if(xPosition - stone.getObs().x < 60 && xPosition - stone.getObs().x > 0) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public void resolveOverLaps(List<PowerDecorator> powerList) {
 		for(PowerDecorator power1 : powerList) {
 			for(ObsPosition obs1 : positionList) {
