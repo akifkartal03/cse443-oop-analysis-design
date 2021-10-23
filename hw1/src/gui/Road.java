@@ -50,6 +50,7 @@ public class Road {
 
     /**
      * Update position of road
+     * Stones are simple rectangles
      * */
     public void updateRoad(int distance) {
         for (RoadStone stone : stoneList) {

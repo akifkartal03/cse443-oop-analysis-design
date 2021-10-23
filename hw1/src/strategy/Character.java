@@ -3,7 +3,7 @@ package strategy;
 /***
  * Abstract Character class
  */
-public abstract class Character {
+public abstract class Character implements JumpBehavior {
 
 	// has a relation with jump behaviour
     private JumpBehavior jumpBehavior;

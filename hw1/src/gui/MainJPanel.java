@@ -76,6 +76,7 @@ public class MainJPanel extends JPanel implements Runnable, KeyListener {
      */
     @Override
     public void run() {
+        //FPS = 60
         double fpsMS = 1000000000 / FPS;
         double deltaTime = 0;
         long lastTime = System.nanoTime();
@@ -94,7 +95,7 @@ public class MainJPanel extends JPanel implements Runnable, KeyListener {
 
                 if (character.getTotalLife() <= 0 && !isGameOver) {
 
-                    // finis game
+                    // finish game
                     logPanel.append("\nGame Over!!");
                     isGameOver = true;
                     state = GameState.Finished;

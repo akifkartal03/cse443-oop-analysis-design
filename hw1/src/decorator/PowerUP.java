@@ -1,5 +1,7 @@
 package decorator;
 
+import strategy.Character;
+
 /**
  * Abstract Power Component Class
  * */
