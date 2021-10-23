@@ -1,31 +1,38 @@
 package decorator;
 
-import java.awt.Graphics;
-import java.awt.Rectangle;
+/**
+ * B type Power
+ * */
+public class BPower extends PowerDecorator {
 
-public class BPower extends PowerDecorator{
+    public BPower() {
+        super();
+        setName("B");
+    }
 
-	public BPower() {
-		super();
-		setName("B");
-		
-		
-	}
-	public BPower(PowerUP powertype) {
-		this();
-		this.powertype = powertype;
-	}
+    /**
+     * Inject power type
+     * */
+    public BPower(PowerUP powertype) {
+        this();
+        this.powertype = powertype;
+    }
 
-	@Override
-	public long multiplier() {
-		return getPowertype().multiplier()*5;
-	}
+    /**
+     * Wrap the score multiplier
+     * */
+    @Override
+    public long multiplier() {
+        return getPowertype().multiplier() * 5;
+    }
 
-	@Override
-	public String getName() {
-		return "B";
-	}
+    /**
+     * Get name of Power
+     * */
+    @Override
+    public String getName() {
+        return "B";
+    }
 
-	
 
 }

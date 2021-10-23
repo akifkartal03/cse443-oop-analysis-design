@@ -1,45 +1,45 @@
 package gui;
 
 import java.awt.Rectangle;
-import java.util.ArrayList;
-import java.util.Random;
 
+/***
+ * Position of the Obstacles
+ */
 public class ObsPosition {
-	private int xStart;
-	private Rectangle obs;
-	
-	public ObsPosition() {
-		xStart = 200;
-		obs = new Rectangle();
-		obs.width = 10;
-		obs.height = 69;
-		obs.x = xStart;
-		obs.y = 160;
-	}
+    private int xStart;
+    //to catch collisions
+    private Rectangle obs;
 
-	public ObsPosition(int xStart, Rectangle obs) {
-		this.xStart = xStart;
-		this.obs = obs;
-	}
+    public ObsPosition() {
+        xStart = 200;
+        obs = new Rectangle();
+        obs.width = 10;
+        obs.height = 69;
+        obs.x = xStart;
+        obs.y = 160;
+    }
 
-	public int getxStart() {
-		return xStart;
-	}
+    public ObsPosition(int xStart, Rectangle obs) {
+        this.xStart = xStart;
+        this.obs = obs;
+    }
 
-	public void setxStart(int xStart) {
-		this.xStart = xStart;
-		obs.x = xStart;
-	}
+    public int getxStart() {
+        return xStart;
+    }
 
-	public Rectangle getObs() {
-		return obs;
-	}
+    public void setxStart(int xStart) {
+        this.xStart = xStart;
+        obs.x = xStart;
+    }
 
-	public void setObs(Rectangle obs) {
-		this.obs = obs;
-	}
-	
-	
-	
-	
+    public Rectangle getObs() {
+        return obs;
+    }
+
+    public void setObs(Rectangle obs) {
+        this.obs = obs;
+    }
+
+
 }

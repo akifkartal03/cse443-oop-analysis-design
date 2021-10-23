@@ -1,31 +1,40 @@
 package decorator;
 
-import java.awt.Graphics;
-import java.awt.Rectangle;
+/**
+ * C type Power
+ * */
+public class CPower extends PowerDecorator {
 
-public class CPower extends PowerDecorator{
+    public CPower() {
+        super();
+        setName("C");
 
-	public CPower() {
-		super();
-		setName("C");
-		
-		
-	}
-	public CPower(PowerUP powertype) {
-		this();
-		this.powertype = powertype;
-	}
-	
-	@Override
-	public long multiplier() {
-		return getPowertype().multiplier()*10;
-	}
 
-	@Override
-	public String getName() {
-		return "C";
-	}
+    }
 
-	
+	/**
+	 * Inject power type
+	 * */
+    public CPower(PowerUP powertype) {
+        this();
+        this.powertype = powertype;
+    }
+
+	/**
+	 * Wrap the score multiplier
+	 * */
+    @Override
+    public long multiplier() {
+        return getPowertype().multiplier() * 10;
+    }
+
+	/**
+	 * Get name of Power.
+	 * */
+    @Override
+    public String getName() {
+        return "C";
+    }
+
 
 }

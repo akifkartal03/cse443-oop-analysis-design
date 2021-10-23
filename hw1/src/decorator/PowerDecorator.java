@@ -1,56 +1,54 @@
 package decorator;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+
 import java.awt.Rectangle;
 
-public abstract class PowerDecorator extends PowerUP{
-	protected PowerUP powertype; //has a relation
-	protected int xStart;
-	protected Rectangle powerArea;
-	
-	public PowerDecorator() {
-		setName("U");
-		xStart = 400;
-		powerArea = new Rectangle();
-		powerArea.width = 20;
-		powerArea.height = 20;
-		powerArea.x = xStart;
-		powerArea.y = 212;
-		
-	}
-	
-	public abstract String getName();
+/**
+ * Abstract Decorator Class for Powers
+ * */
+public abstract class PowerDecorator extends PowerUP {
+    protected PowerUP powertype; //has a relation
+    protected int xStart;
+    //in order to catch collisions with power
+    protected Rectangle powerArea;
 
-	public PowerUP getPowertype() {
-		return powertype;
-	}
+    public PowerDecorator() {
+        setName("U");
+        xStart = 400;
+        powerArea = new Rectangle();
+        powerArea.width = 20;
+        powerArea.height = 20;
+        powerArea.x = xStart;
+        powerArea.y = 212;
 
-	public void setPowertype(PowerUP powertype) {
-		this.powertype = powertype;
-	}
+    }
 
-	public int getxStart() {
-		return xStart;
-	}
+    public abstract String getName();
 
-	public void setxStart(int xStart) {
-		this.xStart = xStart;
-		powerArea.x = xStart;
-	}
+    public PowerUP getPowertype() {
+        return powertype;
+    }
 
-	public Rectangle getPowerArea() {
-		return powerArea;
-	}
+    public void setPowertype(PowerUP powertype) {
+        this.powertype = powertype;
+    }
 
-	public void setPowerArea(Rectangle powerArea) {
-		this.powerArea = powerArea;
-	}
-	
-	
-	
-	
-	
+    public int getxStart() {
+        return xStart;
+    }
+
+    public void setxStart(int xStart) {
+        this.xStart = xStart;
+        powerArea.x = xStart;
+    }
+
+    public Rectangle getPowerArea() {
+        return powerArea;
+    }
+
+    public void setPowerArea(Rectangle powerArea) {
+        this.powerArea = powerArea;
+    }
+
+
 }

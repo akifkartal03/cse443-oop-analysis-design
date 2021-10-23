@@ -1,14 +1,17 @@
 package decorator;
 
-public class Score extends PowerUP{
-	
-	public Score() {
-		setName("Total Score");
-	}
+/**
+* Concrete component score class.
+* */
+public class Score extends PowerUP {
 
-	@Override
-	public long multiplier() {
-		return 1;
-	}
+    public Score() {
+        setName("Total Score");
+    }
+
+    @Override
+    public long multiplier() {
+        return 1;
+    }
 
 }
