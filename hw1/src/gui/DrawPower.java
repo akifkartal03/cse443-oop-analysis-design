@@ -46,7 +46,7 @@ public class DrawPower {
 		PowerDecorator stone2 = powerList.get(0);
 		if(stone2.getxStart() + 21 < 0) {
 			stone2 = getRandomPower();
-			stone2.setxStart(powerList.get(powerList.size() - 1).getxStart() + getRandomPosition());
+			stone2.setxStart(powerList.get(powerList.size() - 1).getxStart() + getRandomPosition() + 30);
 			powerList.add(stone2);
 			powerList.remove(0);
 		}

@@ -34,7 +34,7 @@ public class Obstacle {
 		}
 		ObsPosition stone2 = positionList.get(0);
 		if(stone2.getxStart() + 11 < 0) {
-			stone2.setxStart(positionList.get(positionList.size() - 1).getxStart() + getRandomPosition());
+			stone2.setxStart(positionList.get(positionList.size() - 1).getxStart() + getRandomPosition() + 20);
 			positionList.add(stone2);
 			positionList.remove(0);
 		}
@@ -70,6 +70,9 @@ public class Obstacle {
 		}
 		
 	}
+	/*
+	 * 
+	 * */
 	
 	public void draw(Graphics g) {
 			

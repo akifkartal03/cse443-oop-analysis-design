@@ -203,7 +203,7 @@ public class MainJPanel extends JPanel implements Runnable, KeyListener{
 		}
 		else {
 			JOptionPane.showMessageDialog(null, "Game Over!\n"
-					+ "Start New Game.", "Game Over", JOptionPane.INFORMATION_MESSAGE);
+					+ "Start New Game from Menu", "Game Over", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 

@@ -53,7 +53,8 @@ public class MainWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public MainWindow() {
-		setTitle("HW1");
+		setResizable(false);
+		setTitle("GTU Red Ball 443");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//setBounds(100,100,652, 380);
 		setSize(601,707);
@@ -87,7 +88,9 @@ public class MainWindow extends JFrame {
 					logArea.append("\nGame Paused!");
 				}
 				else if(contentPanel.getState() == GameState.Finished) {
-					logArea.append("\nGame Over! Start Again.");
+					//logArea.append("\nGame Over! Start Again.");
+					JOptionPane.showMessageDialog(null, "Game Over!\n"
+							+ "Start New Game from Menu", "Game Over", JOptionPane.INFORMATION_MESSAGE);
 				}
 				
 				//JOptionPane.showMessageDialog(null, "Game Started!\nGood Luck:)", "Game Started", JOptionPane.INFORMATION_MESSAGE);
