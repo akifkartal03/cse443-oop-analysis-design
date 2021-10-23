@@ -39,7 +39,7 @@ public class Obstacle {
 
         ObsPosition stone2 = positionList.get(0);
         if (stone2.getxStart() + 11 < 0) {
-            stone2.setxStart(positionList.get(positionList.size() - 1).getxStart() + getRandomPosition() + 20);
+            stone2.setxStart(positionList.get(positionList.size() - 1).getxStart() + getRandomPosition() + 40);
             positionList.add(stone2);
             positionList.remove(0);
         }
