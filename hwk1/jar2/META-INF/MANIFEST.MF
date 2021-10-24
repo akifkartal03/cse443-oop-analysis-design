@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: gui.MainWindow
+Class-Path: miglayout15-swing.jar
+
