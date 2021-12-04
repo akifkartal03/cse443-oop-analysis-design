@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"com.Akif","l":"CompositeEmail"},{"p":"com.Akif","l":"CompositeIterator"},{"p":"com.Akif","l":"Email"},{"p":"com.Akif","l":"EmailComponent"},{"p":"com.Akif","l":"Main"},{"p":"com.Akif","l":"NullIterator"}];updateSearchResults();
