@@ -26,11 +26,15 @@ public class CompositeEmail extends EmailComponent{
 
     @Override
     public void print() {
+        System.out.println("------------------------------------------------");
+        System.out.println("Owner: "+getOwner());
+        System.out.println("------------------------------------------------");
         Iterator iterator = emailComponents.iterator();
         while (iterator.hasNext()) {
             EmailComponent emailComponent = (EmailComponent) iterator.next();
             emailComponent.print();
         }
+        System.out.println("------------------------------------------------");
     }
 
     @Override
