@@ -1,5 +1,7 @@
 package monitors;
 
+import helper.Helper;
+
 public class ThreadFunction implements Runnable{
     private ThreadSharedData data;
     private Coordinates coordinates;
@@ -12,6 +14,11 @@ public class ThreadFunction implements Runnable{
     @Override
     public void run() {
         System.out.println("Task1 -> XStart: " + coordinates.getxLow() + " YStart: "+ coordinates.getyLow());
+        for (int i = coordinates.getxLow(); i < coordinates.getxUp() ; i++) {
+            for (int j = coordinates.getyLow(); j <coordinates.getyUp() ; j++) {
+                data.setSumByIndex(i,j, Helper.addNumbers(data.getAByIndex(i,j),data.getBByIndex(i,j)));
+            }
+        }
         data.getMutex().lock(); // lock(m)
         try{
             data.getArrived().getAndIncrement(); // ++arrived
@@ -27,6 +34,16 @@ public class ThreadFunction implements Runnable{
             data.getMutex().unlock(); // unlock(m)
         }
         System.out.println("Task2 -> XStart: " + coordinates.getxLow() + " YStart: "+ coordinates.getyLow());
+        data.getMutex2().lock(); // lock(m)
+        try{
+            data.getMainArrived().getAndIncrement(); // ++arrived
+            if(data.getMainArrived().get() >= 4){
+                data.getCond2().signalAll(); // broadcast(c)
+                //System.out.println("sfsasfsdf");
+            }
+        } finally {
+            data.getMutex2().unlock(); // unlock(m)
+        }
     }
 }
 
