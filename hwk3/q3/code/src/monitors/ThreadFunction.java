@@ -1,26 +1,17 @@
 package monitors;
 
-public class Thread0 implements Runnable{
+public class ThreadFunction implements Runnable{
     private ThreadSharedData data;
+    private Coordinates coordinates;
 
-    public Thread0(ThreadSharedData data) {
+    public ThreadFunction(ThreadSharedData data ,Coordinates coordinates) {
         this.data = data;
+        this.coordinates = coordinates;
     }
 
-    /**
-     * When an object implementing interface {@code Runnable} is used
-     * to create a thread, starting the thread causes the object's
-     * {@code run} method to be called in that separately executing
-     * thread.
-     * <p>
-     * The general contract of the method {@code run} is that it may
-     * take any action whatsoever.
-     *
-     * @see Thread#run()
-     */
     @Override
     public void run() {
-        System.out.println("Thread0 task1");
+        System.out.println("Task1 -> XStart: " + coordinates.getxLow() + " YStart: "+ coordinates.getyLow());
         data.getMutex().lock(); // lock(m)
         try{
             data.getArrived().getAndIncrement(); // ++arrived
@@ -35,6 +26,7 @@ public class Thread0 implements Runnable{
         } finally {
             data.getMutex().unlock(); // unlock(m)
         }
-        System.out.println("Thread0 task2 "+"Arrived: "+data.getArrived().get());
+        System.out.println("Task2 -> XStart: " + coordinates.getxLow() + " YStart: "+ coordinates.getyLow());
     }
 }
+

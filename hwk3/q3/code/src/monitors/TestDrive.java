@@ -11,14 +11,15 @@ public class TestDrive {
         Condition cond= mutex.newCondition();
         AtomicInteger arrivedCount = new AtomicInteger(0);
 
+
         //set common data
         ThreadSharedData data= new ThreadSharedData(arrivedCount,mutex,cond);
 
         //create thread with classes and inject shared data
-        Thread thread0 = new Thread(new Thread0(data));
-        Thread thread1 = new Thread(new Thread1(data));
-        Thread thread2 = new Thread(new Thread2(data));
-        Thread thread3 = new Thread(new Thread3(data));
+        Thread thread0 = new Thread(new ThreadFunction(data,new Coordinates(0,4096,0,4096)));
+        Thread thread1 = new Thread(new ThreadFunction(data,new Coordinates(0,4096,4096,8192)));
+        Thread thread2 = new Thread(new ThreadFunction(data,new Coordinates(4096,8192,0,4096)));
+        Thread thread3 = new Thread(new ThreadFunction(data,new Coordinates(4096,8192,4096,8192)));
 
         //start threads
         thread0.start();
