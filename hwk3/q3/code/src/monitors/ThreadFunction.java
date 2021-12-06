@@ -15,6 +15,11 @@ public class ThreadFunction implements Runnable{
     @Override
     public void run() {
         System.out.println("Task1 -> XStart: " + coordinates.getxLow() + " YStart: "+ coordinates.getyLow());
+        for (int i = coordinates.getxLow(); i < coordinates.getxUp() ; i++) {
+            for (int j = coordinates.getyLow(); j <coordinates.getyUp() ; j++) {
+                data.setSumByIndex(i,j, Helper.addNumbers(data.getAByIndex(i,j),data.getBByIndex(i,j)));
+            }
+        }
         data.getMutex().lock(); // lock(m)
         try{
             data.getArrived().getAndIncrement(); // ++arrived

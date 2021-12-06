@@ -1,6 +1,7 @@
 package javaSynchronized;
 
 import helper.Coordinates;
+import helper.Helper;
 
 public class SyncThreadFunction implements Runnable{
     private final LockAndData lockData;
@@ -14,6 +15,11 @@ public class SyncThreadFunction implements Runnable{
     @Override
     public void run() {
         System.out.println("Task1 -> XStart: " + coordinates.getxLow() + " YStart: "+ coordinates.getyLow());
+        for (int i = coordinates.getxLow(); i < coordinates.getxUp() ; i++) {
+            for (int j = coordinates.getyLow(); j <coordinates.getyUp() ; j++) {
+                lockData.setSumByIndex(i,j, Helper.addNumbers(lockData.getAByIndex(i,j),lockData.getBByIndex(i,j)));
+            }
+        }
         synchronized (lockData){
             try{
                 lockData.getArrived().getAndIncrement(); // ++arrived
