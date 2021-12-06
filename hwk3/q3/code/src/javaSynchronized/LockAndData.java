@@ -14,5 +14,15 @@ public class LockAndData {
     private ComplexNumber[][] matrixSum;
     private AtomicInteger arrived;
 
+    public LockAndData(AtomicInteger arrived) {
+        this.arrived = arrived;
+    }
 
+    public AtomicInteger getArrived() {
+        return arrived;
+    }
+
+    public void setArrived(AtomicInteger arrived) {
+        this.arrived = arrived;
+    }
 }

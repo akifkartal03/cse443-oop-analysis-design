@@ -35,16 +35,7 @@ public class ThreadFunction implements Runnable{
             data.getMutex().unlock(); // unlock(m)
         }
         System.out.println("Task2 -> XStart: " + coordinates.getxLow() + " YStart: "+ coordinates.getyLow());
-        data.getMutex2().lock(); // lock(m)
-        try{
-            data.getMainArrived().getAndIncrement(); // ++arrived
-            if(data.getMainArrived().get() >= 4){
-                data.getCond2().signalAll(); // broadcast(c)
-                //System.out.println("sfsasfsdf");
-            }
-        } finally {
-            data.getMutex2().unlock(); // unlock(m)
-        }
+
     }
 }
 

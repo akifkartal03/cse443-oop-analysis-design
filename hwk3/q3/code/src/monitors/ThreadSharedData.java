@@ -13,9 +13,7 @@ public class ThreadSharedData {
     private AtomicInteger arrived;
     private ReentrantLock mutex;
     private Condition cond;
-    private AtomicInteger mainArrived;
-    private Condition cond2;
-    private ReentrantLock mutex2;
+
 
 
     public ThreadSharedData(AtomicInteger arrived, ReentrantLock mutex, Condition cond) {
@@ -23,31 +21,6 @@ public class ThreadSharedData {
         this.mutex = mutex;
         this.cond = cond;
     }
-
-    public ReentrantLock getMutex2() {
-        return mutex2;
-    }
-
-    public void setMutex2(ReentrantLock mutex2) {
-        this.mutex2 = mutex2;
-    }
-
-    public Condition getCond2() {
-        return cond2;
-    }
-
-    public void setCond2(Condition cond2) {
-        this.cond2 = cond2;
-    }
-
-    public AtomicInteger getMainArrived() {
-        return mainArrived;
-    }
-
-    public void setMainArrived(AtomicInteger mainArrived) {
-        this.mainArrived = mainArrived;
-    }
-
 
 
     public AtomicInteger getArrived() {
