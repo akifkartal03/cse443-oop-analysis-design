@@ -1,4 +1,4 @@
-package monitors;
+package helper;
 
 public class Coordinates {
     private int xLow;

@@ -1,5 +1,6 @@
 package monitors;
 
+import helper.Coordinates;
 import helper.Helper;
 
 public class ThreadFunction implements Runnable{

@@ -1,8 +1,10 @@
-package monitors;
+package javaSynchronized;
 
 import helper.ComplexNumber;
 import helper.Coordinates;
 import helper.Helper;
+import monitors.ThreadFunction;
+import monitors.ThreadSharedData;
 
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -28,8 +30,8 @@ public class TestDrive {
         data.setCond2(cond2);
         data.setMutex2(mutex2);
 
-        Helper.writeToFile(data.getMatrixA(),"matrixA.txt");
-        Helper.writeToFile(data.getMatrixB(),"matrixB.txt");
+        //Helper.writeToFile(data.getMatrixA(),"matrixA.txt");
+        //Helper.writeToFile(data.getMatrixB(),"matrixB.txt");
 
 
         //create threads and inject shared data and its responsible coordinates in matrix
@@ -44,7 +46,7 @@ public class TestDrive {
         thread2.start();
         thread3.start();
 
-        data.getMutex2().lock(); // lock(m)
+        /*data.getMutex2().lock(); // lock(m)
         try{
             if(data.getMainArrived().get() < 4){
                 data.getCond2().await(); // cwait(c,m)
@@ -54,7 +56,7 @@ public class TestDrive {
         } finally {
             data.getMutex2().unlock(); // unlock(m)
         }
-        Helper.writeToFile(data.getMatrixSum(),"matrixSum.txt");
+        Helper.writeToFile(data.getMatrixSum(),"matrixSum.txt");*/
 
 
     }
