@@ -19,18 +19,11 @@ public class TestDrive {
         //set common data
         ThreadSharedData data = new ThreadSharedData(arrivedCount, mutex, cond);
 
-        data.setMatrixA(Helper.createRandomMatrix());
-        data.setMatrixB(Helper.createRandomMatrix());
-        data.setMatrixSum(new ComplexNumber[8192][8192]);
-
-        Helper.writeToFile(data.getMatrixA(), "matrixA.txt");
-        Helper.writeToFile(data.getMatrixB(), "matrixB.txt");
-
         //create threads and inject shared data and its responsible coordinates in matrix
-        Thread thread0 = new Thread(new ThreadFunction(data, new Coordinates(0, 500, 0, 500)));
-        Thread thread1 = new Thread(new ThreadFunction(data, new Coordinates(0, 500, 500, 1000)));
-        Thread thread2 = new Thread(new ThreadFunction(data, new Coordinates(500, 1000, 0, 500)));
-        Thread thread3 = new Thread(new ThreadFunction(data, new Coordinates(500, 1000, 500, 1000)));
+        Thread thread0 = new Thread(new ThreadFunction(data, new Coordinates(0, 4096, 0, 4096)));
+        Thread thread1 = new Thread(new ThreadFunction(data, new Coordinates(0, 4096, 4096, 8192)));
+        Thread thread2 = new Thread(new ThreadFunction(data, new Coordinates(4096, 8192, 0, 4096)));
+        Thread thread3 = new Thread(new ThreadFunction(data, new Coordinates(4096, 8192, 4096, 8192)));
 
         //start threads
         thread0.start();
@@ -47,8 +40,6 @@ public class TestDrive {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Helper.writeToFile(data.getMatrixSum(), "matrixSum.txt");
-
-
+        System.out.println("All threads are finished. Good Bye...");
     }
 }

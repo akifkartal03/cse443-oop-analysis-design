@@ -14,8 +14,6 @@ public class ThreadSharedData {
     private ReentrantLock mutex;
     private Condition cond;
 
-
-
     public ThreadSharedData(AtomicInteger arrived, ReentrantLock mutex, Condition cond) {
         this.arrived = arrived;
         this.mutex = mutex;

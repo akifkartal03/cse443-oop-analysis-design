@@ -12,7 +12,7 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class TestDrive {
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) {
         // create thread shared data number of arrived
         AtomicInteger arrivedCount = new AtomicInteger(0);
 
