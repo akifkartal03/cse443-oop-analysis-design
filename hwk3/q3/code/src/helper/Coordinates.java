@@ -1,16 +1,18 @@
 package helper;
 
 public class Coordinates {
+    private int portion;
     private int xLow;
     private int xUp;
     private int yLow;
     private int yUp;
 
-    public Coordinates(int xLow, int xUp, int yLow, int yUp) {
+    public Coordinates(int xLow, int xUp, int yLow, int yUp,int portion) {
         this.xLow = xLow;
         this.xUp = xUp;
         this.yLow = yLow;
         this.yUp = yUp;
+        this.portion = portion;
     }
 
     public int getxLow() {
@@ -43,5 +45,13 @@ public class Coordinates {
 
     public void setyUp(int yUp) {
         this.yUp = yUp;
+    }
+
+    public int getPortion() {
+        return portion;
+    }
+
+    public void setPortion(int portion) {
+        this.portion = portion;
     }
 }

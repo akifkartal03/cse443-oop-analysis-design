@@ -20,10 +20,10 @@ public class TestDrive {
         ThreadSharedData data = new ThreadSharedData(arrivedCount, mutex, cond);
 
         //create threads and inject shared data and its responsible coordinates in matrix
-        Thread thread0 = new Thread(new ThreadFunction(data, new Coordinates(0, 4096, 0, 4096)));
-        Thread thread1 = new Thread(new ThreadFunction(data, new Coordinates(0, 4096, 4096, 8192)));
-        Thread thread2 = new Thread(new ThreadFunction(data, new Coordinates(4096, 8192, 0, 4096)));
-        Thread thread3 = new Thread(new ThreadFunction(data, new Coordinates(4096, 8192, 4096, 8192)));
+        Thread thread0 = new Thread(new ThreadFunction(data, new Coordinates(0, 500, 0, 500,0)));
+        Thread thread1 = new Thread(new ThreadFunction(data, new Coordinates(0, 500, 500, 1000,1)));
+        Thread thread2 = new Thread(new ThreadFunction(data, new Coordinates(500, 1000, 0, 500,2)));
+        Thread thread3 = new Thread(new ThreadFunction(data, new Coordinates(500, 1000, 500, 1000,3)));
 
         //start threads
         thread0.start();

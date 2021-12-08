@@ -25,10 +25,16 @@ public class ComplexNumber {
         this.img = img;
     }
     public String getNumber(){
-        return String.format("%d + %di",real,img);
+        if (img < 0)
+            return String.format("%d - %di",real,-1*img);
+        else
+            return String.format("%d + %di",real,img);
     }
     @Override
     public String toString() {
-        return String.format("%d + %di",real,img);
+        if (img < 0)
+            return String.format("%d - %di",real,-1*img);
+        else
+            return String.format("%d + %di",real,img);
     }
 }

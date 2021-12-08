@@ -12,10 +12,12 @@ public class LockAndData {
     private ComplexNumber[][] matrixA;
     private ComplexNumber[][] matrixB;
     private ComplexNumber[][] matrixSum;
+    private ComplexNumber[][] dftResult;
     private AtomicInteger arrived;
 
     public LockAndData(AtomicInteger arrived) {
         this.arrived = arrived;
+        dftResult = new ComplexNumber[4][4];
     }
 
     public AtomicInteger getArrived() {
@@ -36,6 +38,12 @@ public class LockAndData {
     }
     public void setSumByIndex(int i, int j,ComplexNumber number){
         matrixSum[i][j] = number;
+    }
+    public void setResByIndex(int i, int j,ComplexNumber number){
+        dftResult[i][j] = number;
+    }
+    public ComplexNumber getResByIndex(int i, int j){
+        return dftResult[i][j];
     }
 
     public void setMatrixA(ComplexNumber[][] matrixA) {
@@ -60,5 +68,13 @@ public class LockAndData {
 
     public ComplexNumber[][] getMatrixSum() {
         return matrixSum;
+    }
+
+    public ComplexNumber[][] getDftResult() {
+        return dftResult;
+    }
+
+    public void setDftResult(ComplexNumber[][] dftResult) {
+        this.dftResult = dftResult;
     }
 }
