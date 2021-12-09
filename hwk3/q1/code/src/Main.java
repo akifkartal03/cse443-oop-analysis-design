@@ -1,5 +1,12 @@
+/***
+ * Test drive class for project
+ */
 public class Main {
 
+    /***
+     * Main function of the program.
+     * @param args params
+     */
     public static void main(String[] args) {
         BestDSEver buffer = new BestDSEverAdapter();
         Integer[] arr = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};

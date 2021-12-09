@@ -1,13 +1,19 @@
 import java.util.concurrent.locks.ReentrantLock;
 
+/***
+ * Rendered version of BestDSEver class to make thread-safe method call.
+ */
 public class BestDSEverAdapter extends BestDSEver {
     private ReentrantLock mutex;
 
     public BestDSEverAdapter() {
-        super();
+        super(); // create arraylist
         mutex = new ReentrantLock();
     }
-
+    /***
+     * insert an element thread-safe
+     * @param o element to be inserted
+     */
     @Override
     void insert(Object o) {
         mutex.lock(); //lock(m)
@@ -17,7 +23,10 @@ public class BestDSEverAdapter extends BestDSEver {
             mutex.unlock(); //unlock(m)
         }
     }
-
+    /***
+     * remove an element thread-safe
+     * @param o element to be removed
+     */
     @Override
     void remove(Object o) {
         mutex.lock(); //lock(m)
@@ -27,7 +36,11 @@ public class BestDSEverAdapter extends BestDSEver {
             mutex.unlock(); //unlock(m)
         }
     }
-
+    /***
+     * get an element thread-safe
+     * @param index index of element
+     * @return element if present
+     */
     @Override
     Object get(int index) {
         mutex.lock(); //lock(m)
