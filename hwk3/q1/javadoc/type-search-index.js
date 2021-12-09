@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"<Unnamed>","l":"BestDSEver"},{"p":"<Unnamed>","l":"BestDSEverAdapter"},{"p":"<Unnamed>","l":"Main"}];updateSearchResults();

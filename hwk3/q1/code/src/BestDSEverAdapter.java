@@ -15,7 +15,7 @@ public class BestDSEverAdapter extends BestDSEver {
      * @param o element to be inserted
      */
     @Override
-    void insert(Object o) {
+    public void insert(Object o) {
         mutex.lock(); //lock(m)
         try {
             super.insert(o);
@@ -28,7 +28,7 @@ public class BestDSEverAdapter extends BestDSEver {
      * @param o element to be removed
      */
     @Override
-    void remove(Object o) {
+    public void remove(Object o) {
         mutex.lock(); //lock(m)
         try {
             super.remove(o);
@@ -42,7 +42,7 @@ public class BestDSEverAdapter extends BestDSEver {
      * @return element if present
      */
     @Override
-    Object get(int index) {
+    public Object get(int index) {
         mutex.lock(); //lock(m)
         try {
             return super.get(index);

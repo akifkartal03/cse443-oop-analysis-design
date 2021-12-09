@@ -14,7 +14,7 @@ public class BestDSEver {
      * insert an element
      * @param o element to be inserted
      */
-    void insert(Object o) {
+    public void insert(Object o) {
         arrayList.add(o);
     }
 
@@ -22,7 +22,7 @@ public class BestDSEver {
      * remove an element
      * @param o element to be removed
      */
-    void remove(Object o) {
+    public void remove(Object o) {
         arrayList.remove(o);
     }
 
@@ -31,7 +31,7 @@ public class BestDSEver {
      * @param index index of element
      * @return element if present
      */
-    Object get(int index) {
+    public Object get(int index) {
         return arrayList.get(index);
     }
 }

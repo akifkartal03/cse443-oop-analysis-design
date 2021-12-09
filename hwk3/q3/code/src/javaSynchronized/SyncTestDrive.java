@@ -9,7 +9,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /***
  * Test class for java synchronized mechanism
  */
-public class TestDrive {
+public class SyncTestDrive {
     /***
      * main function
      * @param args params
