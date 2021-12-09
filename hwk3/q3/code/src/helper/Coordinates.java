@@ -1,7 +1,10 @@
 package helper;
 
+/***
+ * This class is a representation of a coordinates for threads on matrix.
+ */
 public class Coordinates {
-    private int portion;
+    private int portion; // 0 - 1 - 2 - 3
     private int xLow;
     private int xUp;
     private int yLow;

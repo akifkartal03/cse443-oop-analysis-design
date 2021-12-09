@@ -6,18 +6,27 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
+/***
+ * This class is used for shared data between threads
+ */
 public class ThreadSharedData {
+    //shared matrices
     private ComplexNumber[][] matrixA;
     private ComplexNumber[][] matrixB;
     private ComplexNumber[][] matrixSum;
+    private ComplexNumber[][] dftResult;
+
+    //shared synchronization data
     private AtomicInteger arrived;
     private ReentrantLock mutex;
     private Condition cond;
 
+    //inject some shared data
     public ThreadSharedData(AtomicInteger arrived, ReentrantLock mutex, Condition cond) {
         this.arrived = arrived;
         this.mutex = mutex;
         this.cond = cond;
+        dftResult = new ComplexNumber[2048][4096];
     }
 
 
@@ -79,5 +88,16 @@ public class ThreadSharedData {
 
     public ComplexNumber[][] getMatrixSum() {
         return matrixSum;
+    }
+    public void setResByIndex(int i, int j,ComplexNumber number){
+        dftResult[i][j] = number;
+    }
+
+    public ComplexNumber[][] getDftResult() {
+        return dftResult;
+    }
+
+    public void setDftResult(ComplexNumber[][] dftResult) {
+        this.dftResult = dftResult;
     }
 }

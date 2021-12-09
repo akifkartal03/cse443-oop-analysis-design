@@ -6,9 +6,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /***
  * This class is used for both shared data and
- * as a lock object for synchronized.
+ * as a lock object for java synchronized.
  */
 public class LockAndData {
+    //shared data between threads
     private ComplexNumber[][] matrixA;
     private ComplexNumber[][] matrixB;
     private ComplexNumber[][] matrixSum;
@@ -17,7 +18,7 @@ public class LockAndData {
 
     public LockAndData(AtomicInteger arrived) {
         this.arrived = arrived;
-        dftResult = new ComplexNumber[4][4];
+        dftResult = new ComplexNumber[2048][4096];
     }
 
     public AtomicInteger getArrived() {

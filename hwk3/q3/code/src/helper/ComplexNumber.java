@@ -1,5 +1,8 @@
 package helper;
 
+/***
+ * This class is a representation of a complex number.
+ */
 public class ComplexNumber {
     private int real;
     private int img;

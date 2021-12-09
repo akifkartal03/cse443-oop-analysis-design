@@ -3,14 +3,19 @@ package monitors;
 import helper.ComplexNumber;
 import helper.Coordinates;
 import helper.Helper;
-
-import java.io.IOException;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
+/***
+ * Test class for java monitor mechanism
+ */
 public class TestDrive {
-    public static void main(String[] args) throws IOException, InterruptedException {
+    /***
+     * main function
+     * @param args params
+     */
+    public static void main(String[] args) {
         // create thread shared data
         ReentrantLock mutex = new ReentrantLock();
         Condition cond = mutex.newCondition();
@@ -18,13 +23,18 @@ public class TestDrive {
 
         //set common data
         ThreadSharedData data = new ThreadSharedData(arrivedCount, mutex, cond);
+        data.setMatrixA(Helper.createRandomMatrix());
+        data.setMatrixB(Helper.createRandomMatrix());
+        data.setMatrixSum(new ComplexNumber[4096][4096]);
 
         //create threads and inject shared data and its responsible coordinates in matrix
-        Thread thread0 = new Thread(new ThreadFunction(data, new Coordinates(0, 500, 0, 500,0)));
-        Thread thread1 = new Thread(new ThreadFunction(data, new Coordinates(0, 500, 500, 1000,1)));
-        Thread thread2 = new Thread(new ThreadFunction(data, new Coordinates(500, 1000, 0, 500,2)));
-        Thread thread3 = new Thread(new ThreadFunction(data, new Coordinates(500, 1000, 500, 1000,3)));
+        Thread thread0 = new Thread(new ThreadFunction(data, new Coordinates(0, 2048, 0, 2048, 0)));
+        Thread thread1 = new Thread(new ThreadFunction(data, new Coordinates(0, 2048, 2048, 4096, 1)));
+        Thread thread2 = new Thread(new ThreadFunction(data, new Coordinates(2048, 4096, 0, 2048, 2)));
+        Thread thread3 = new Thread(new ThreadFunction(data, new Coordinates(2048, 4096, 2048, 4096, 3)));
 
+        System.out.println("Threads are starting...");
+        long start = System.currentTimeMillis();
         //start threads
         thread0.start();
         thread1.start();
@@ -40,6 +50,8 @@ public class TestDrive {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        long time = System.currentTimeMillis() - start;
+        System.out.println("Time Taken in java monitor: " + time + " ms");
         System.out.println("All threads are finished. Good Bye...");
     }
 }

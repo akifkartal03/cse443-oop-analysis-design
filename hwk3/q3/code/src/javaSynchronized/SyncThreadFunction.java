@@ -4,23 +4,34 @@ import helper.ComplexNumber;
 import helper.Coordinates;
 import helper.Helper;
 
+/***
+ * This is a class which implements runnable interface
+ * to use as a different thread.
+ */
 public class SyncThreadFunction implements Runnable{
+    //shared data between threads
     private final LockAndData lockData;
+    //coordinates on matrix for current thread.
     private Coordinates coordinates;
 
+    //inject data and coordinates
     public SyncThreadFunction(LockAndData lockData, Coordinates coordinates) {
         this.lockData = lockData;
         this.coordinates = coordinates;
     }
 
+    /***
+     * this is the function that thread will run.
+     */
     @Override
     public void run() {
-        System.out.println("Task1 -> XStart: " + coordinates.getxLow() + " YStart: "+ coordinates.getyLow());
+        //task1
         for (int i = coordinates.getxLow(); i < coordinates.getxUp() ; i++) {
             for (int j = coordinates.getyLow(); j <coordinates.getyUp() ; j++) {
                 lockData.setSumByIndex(i,j, Helper.addNumbers(lockData.getAByIndex(i,j),lockData.getBByIndex(i,j)));
             }
         }
+        /* check barrier!!!*/
         synchronized (lockData){
             try{
                 lockData.getArrived().getAndIncrement(); // ++arrived
@@ -33,9 +44,8 @@ public class SyncThreadFunction implements Runnable{
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
-            //System.out.println("Task2 -> XStart: " + coordinates.getxLow() + " YStart: "+ coordinates.getyLow());
         }
+        //task2
         int n = (coordinates.getxUp() - coordinates.getxLow());
         int k = 0;
         for (int i = coordinates.getxLow(); i < coordinates.getxUp() ; i++) {
@@ -47,9 +57,7 @@ public class SyncThreadFunction implements Runnable{
                         lockData.getSumByIndex(i,j).getImg() * Math.sin(angle);
                 sumImag += -1*lockData.getSumByIndex(i,j).getReal() * Math.sin(angle) +
                         lockData.getSumByIndex(i,j).getImg() * Math.cos(angle);
-                System.out.print(lockData.getSumByIndex(i,j).getReal() + " ");
             }
-            System.out.print("\n");
             lockData.setResByIndex(coordinates.getPortion(),k,new ComplexNumber((int)sumReal,
                     (int)sumImag));
             k++;
