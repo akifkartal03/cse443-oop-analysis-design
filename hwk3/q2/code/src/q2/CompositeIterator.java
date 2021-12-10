@@ -1,4 +1,4 @@
-package com.Akif;
+package q2;
 
 import java.util.Iterator;
 import java.util.Stack;
