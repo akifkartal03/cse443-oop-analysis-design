@@ -30,8 +30,6 @@ public class SyncTestDrive {
         Thread thread2 = new Thread(new SyncThreadFunction(data, new Coordinates(2048, 4096, 0, 2048, 2)));
         Thread thread3 = new Thread(new SyncThreadFunction(data, new Coordinates(2048, 4096, 2048, 4096, 3)));
 
-        System.out.println("Threads are starting...");
-        long start = System.currentTimeMillis();
         //start threads
         thread0.start();
         thread1.start();
@@ -48,9 +46,7 @@ public class SyncTestDrive {
             e.printStackTrace();
         }
 
-        long time = System.currentTimeMillis() - start;
-        System.out.println("Time Taken in java synchronized: " + time + " ms");
-        System.out.println("All threads are finished. Good Bye...");
+
 
     }
 }

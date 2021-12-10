@@ -22,8 +22,6 @@ public class SingleThread {
         data.setMatrixSum(new ComplexNumber[4096][4096]);
         Coordinates coordinates = new Coordinates(0,4096,0,4096,1);
 
-        System.out.println("Calculating is starting...");
-        long start = System.currentTimeMillis();
         for (int i = coordinates.getxLow(); i < coordinates.getxUp() ; i++) {
             for (int j = coordinates.getyLow(); j <coordinates.getyUp() ; j++) {
                 data.setSumByIndex(i,j, Helper.addNumbers(data.getAByIndex(i,j),data.getBByIndex(i,j)));
@@ -45,8 +43,5 @@ public class SingleThread {
                     (int)sumImag));
             k++;
         }
-        long time = System.currentTimeMillis() - start;
-        System.out.println("Time Taken in single thread: " + time + " ms");
-        System.out.println("Single thread is finished. Good Bye...");
     }
 }
