@@ -3,46 +3,33 @@ package gui;
 import helper.SingleThread;
 import monitors.TestDrive;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import javax.swing.*;
-import java.awt.event.ActionListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Stack;
 import java.util.concurrent.ExecutionException;
 
+
+/***
+ * This class extends from JFrame to create a GUI Window.
+ */
 public class MainWindow extends JFrame {
 
-    private Stack<TakenTime> times;
-    private JPanel contentPane1;
-    private JPanel contentPane2;
-    private JTextArea logArea;
-    private JScrollPane chatScroll;
-    private JPanel chatPanel;
-    private JButton btnNewButton_2;
-    private JButton btnNewButton_3;
-    private int type = 0;
     SwingWorker<Long, Void> calculator;
+    private final Stack<TakenTime> times;
+    private final JPanel contentPane1;
+    private final JPanel contentPane2;
+    private final JTextArea logArea;
+    private final JScrollPane chatScroll;
+    private final JPanel chatPanel;
+    private final JButton btnNewButton_2;
+    private final JButton btnNewButton_3;
+    private int type = 0;
     private boolean isWorking = false;
 
     /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    MainWindow frame = new MainWindow();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
-    /**
-     * Create the frame.
+     * Constructor to initialize things
      */
     public MainWindow() {
         setResizable(false);
@@ -52,6 +39,7 @@ public class MainWindow extends JFrame {
         setLocation(400, 20);
         times = new Stack<>();
 
+        /* Create first 2 button */
         JButton btnNewButton = new JButton("with monitors");
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -60,7 +48,6 @@ public class MainWindow extends JFrame {
             }
         });
         btnNewButton.setBounds(77, 94, 89, 23);
-
         JButton btnNewButton_1 = new JButton("not with monitors");
         btnNewButton_1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -70,10 +57,12 @@ public class MainWindow extends JFrame {
         });
         btnNewButton_1.setBounds(329, 94, 89, 23);
 
+        //add them into frame
         contentPane1 = new JPanel();
         contentPane1.add(btnNewButton);
         contentPane1.add(btnNewButton_1);
 
+        /* Create Log Panel */
         logArea = new JTextArea("Choose a method before start!", 8, 40);
         logArea.setEditable(false);
         logArea.setFocusable(false);
@@ -86,7 +75,9 @@ public class MainWindow extends JFrame {
         contentPane2.add(Box.createVerticalStrut(10));
         contentPane2.add(contentPane1);
 
+        /* Create last 2 button(start and cancel) */
         btnNewButton_2 = new JButton("Start");
+        //add action listener
         btnNewButton_2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (type == 0) {
@@ -169,7 +160,6 @@ public class MainWindow extends JFrame {
 
             }
         });
-
         contentPane1.add(btnNewButton_2);
 
         btnNewButton_3 = new JButton("Cancel");
@@ -193,9 +183,22 @@ public class MainWindow extends JFrame {
         contentPane2.add(chatPanel);
         setContentPane(contentPane2);
 
-
     }
 
-
+    /**
+     * Create window and start
+     */
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    MainWindow frame = new MainWindow();
+                    frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 }
 
