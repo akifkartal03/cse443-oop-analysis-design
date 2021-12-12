@@ -4,7 +4,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * This is a proxy(vekil) of BestDSEver class in order to
  * control access to it and make it thread-safe.
  */
-public class ProxyBestDSEver implements ThreadSafe{
+public class ProxyBestDSEver extends BestDSEver implements ThreadSafe{
     private BestDSEver service;
     private ReentrantLock mutex;
 
